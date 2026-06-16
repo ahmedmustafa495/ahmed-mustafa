@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Trial Runner</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#36f1cd" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -22,6 +24,20 @@
             <li><kbd>P</kbd> pauses or resumes the run</li>
             <li><kbd>R</kbd> restarts after a crash or timeout</li>
           </ul>
+        </div>
+
+        <div class="store-card" aria-label="Trial app store">
+          <p class="eyebrow">Trial app store</p>
+          <h2>Download the trial only</h2>
+          <p>
+            Install this 60-second trial as a browser app or download a single-file
+            offline demo. The full game is intentionally locked in this trial build.
+          </p>
+          <div class="store-actions">
+            <button id="installButton" type="button">Install trial app</button>
+            <button id="downloadButton" type="button" class="secondary-button">Download trial file</button>
+          </div>
+          <p id="storeStatus" class="store-status">Free trial download available. Full game: locked.</p>
         </div>
       </section>
 

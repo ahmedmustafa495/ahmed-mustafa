@@ -18,3 +18,11 @@ Then visit `http://localhost:8000`.
 - Press `P` to pause or resume.
 - Press `R` to restart.
 - The best score is saved in `localStorage`.
+
+## Trial download / install
+
+The app includes a small trial app store panel:
+
+- **Install trial app** uses the browser's Progressive Web App install prompt when supported.
+- **Download trial file** exports a single-file HTML copy of the 60-second trial that can be opened offline.
+- The downloadable build keeps the full game locked and only exposes the timed trial experience.

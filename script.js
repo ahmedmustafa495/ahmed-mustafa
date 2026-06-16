@@ -248,4 +248,54 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+let deferredInstallPrompt;
+const installButton = document.getElementById("installButton");
+const downloadButton = document.getElementById("downloadButton");
+const storeStatus = document.getElementById("storeStatus");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  storeStatus.textContent = "Trial app is ready to install from this store panel.";
+});
+
+installButton.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) {
+    storeStatus.textContent = "Install prompt unavailable. Use Download trial file for the offline trial.";
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  const choice = await deferredInstallPrompt.userChoice;
+  storeStatus.textContent = choice.outcome === "accepted" ? "Trial app installed." : "Install cancelled. Trial download remains available.";
+  deferredInstallPrompt = null;
+});
+
+downloadButton.addEventListener("click", async () => {
+  const [html, css, js] = await Promise.all([
+    fetch("index.html").then((response) => response.text()),
+    fetch("style.css").then((response) => response.text()),
+    fetch("script.js").then((response) => response.text()),
+  ]);
+  const trialOnlyHtml = html
+    .replace(/<link rel="manifest" href="manifest\.json" \/>\s*/, "")
+    .replace(/<meta name="theme-color" content="#36f1cd" \/>\s*/, "")
+    .replace('<link rel="stylesheet" href="style.css" />', `<style>${css}</style>`)
+    .replace('<script src="script.js"></script>', `<script>${js.replace(/<\/script>/g, "<\\/script>")}</script>`);
+  const blob = new Blob([trialOnlyHtml], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "free-trial-runner-trial.html";
+  link.click();
+  URL.revokeObjectURL(url);
+  storeStatus.textContent = "Downloaded the trial-only offline file. Full game remains locked.";
+});
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch(() => {
+    storeStatus.textContent = "Offline install cache is unavailable, but the trial file can still download.";
+  });
+}
+
+
 resetGame();

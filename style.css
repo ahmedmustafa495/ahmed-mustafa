@@ -81,3 +81,16 @@ button {
   .game-shell { grid-template-columns: 1fr; }
   .hud { grid-template-columns: repeat(2, 1fr); }
 }
+
+.store-card {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border: 1px solid rgba(54, 241, 205, 0.24);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(54, 241, 205, 0.09), rgba(255, 204, 77, 0.07));
+}
+
+.store-card h2 { margin: 0.25rem 0 0.5rem; }
+.store-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+.secondary-button { color: var(--text); background: rgba(255, 255, 255, 0.12); box-shadow: none; }
+.store-status { margin-bottom: 0; font-size: 0.95rem; color: var(--accent-2); }
