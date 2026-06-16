@@ -1,0 +1,17 @@
+{
+  "name": "Free Trial Runner",
+  "short_name": "Trial Runner",
+  "description": "A 60-second downloadable free-trial running game.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a1020",
+  "theme_color": "#36f1cd",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='42' fill='%230a1020'/%3E%3Cpath d='M40 132h112' stroke='%2336f1cd' stroke-width='14' stroke-linecap='round'/%3E%3Ccircle cx='126' cy='58' r='17' fill='%23ffcc4d'/%3E%3Cpath d='M84 84h36l-18 42h34' fill='none' stroke='%2336f1cd' stroke-width='15' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
